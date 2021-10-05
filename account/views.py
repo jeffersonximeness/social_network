@@ -41,7 +41,7 @@ def user_login(request):
 @login_required
 def dashboard(request):
     actions = Action.objects.exclude(user=request.user)
-    following_ids = request.user.following.values_lits('id', flat=True)
+    following_ids = request.user.following.values_list('id', flat=True)
 
     if following_ids:
         actions = actions.filter(user__id__in=following_ids)
